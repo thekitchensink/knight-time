@@ -28,6 +28,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-*.unity
-*.unity.meta
-
