@@ -24,6 +24,16 @@ public abstract class Base_bullet : MonoBehaviour {
 
     }
 
+    public virtual void OnAltFireDown()
+    {
+
+    }
+
+    public virtual void OnAltFireUp()
+    {
+
+    }
+
     public virtual void Frame_Mouse_Is_Down()
     {
 

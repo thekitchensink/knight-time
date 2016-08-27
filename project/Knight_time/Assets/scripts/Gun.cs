@@ -5,6 +5,7 @@ public class Gun : MonoBehaviour
 {
     private float CurrentFrameTimeCounter;
     private bool MouseisUp = true;
+    private bool AltFireisUp = true;
     private bool SkipDaFrame;
     // Use this for initialization
     void Start () {
@@ -34,6 +35,22 @@ public class Gun : MonoBehaviour
                     GetComponent<Base_bullet>().OnMouseDown();
                 }
                 GetComponent<Base_bullet>().HeldDownFor += Time.deltaTime;
+            }
+
+            AltFireisUp = !Input.GetButton("Fire2");
+            if (AltFireisUp)
+            {
+                if(prev != AltFireisUp)
+                {
+                    GetComponent<Base_bullet>().OnAltFireUp();
+                }
+            }
+            else
+            {
+                if(prev != AltFireisUp)
+                {
+                    GetComponent<Base_bullet>().OnAltFireDown();
+                }
             }
         }
         else
