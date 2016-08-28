@@ -36,8 +36,8 @@ public class Generation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-      generateMap(128, 128);
-      buildMap(-128.0f, 128.0f, 4.6f, 4.0f, 0.0f);
+      generateMap(10, 10);
+      buildMap(-10.0f, 10.0f, 4.6f, 4.0f, 0.0f);
 	}
 	
 	// Update is called once per frame
