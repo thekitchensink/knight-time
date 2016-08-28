@@ -25,8 +25,8 @@ class cell
 }
 
 public class Generation : MonoBehaviour {
-
-    public int xDense = 4;
+    public GameObject walls;
+    public int xDense = 3;
     public int yDense = 3;
 
   private cell[,] dungeon;
@@ -47,7 +47,7 @@ public class Generation : MonoBehaviour {
 
 	void generateMap(int width, int height)
   {
-    if (xDense <= 1) xDense = 4;
+    if (xDense <= 1) xDense = 3;
     if (yDense <= 1) yDense = 3;
 
     dungeon = new cell[width, height];
@@ -124,6 +124,10 @@ public class Generation : MonoBehaviour {
     }
 	}   
 
+  void updateMiniMap()
+  {
+    
+  }
 
   void buildMap(float topLeftX, float topLeftZ, float hallSize, float height, float floor)	
   {
@@ -137,55 +141,45 @@ public class Generation : MonoBehaviour {
                 //left wall.
                 if (dungeon[j, i].left)
                 {
-                    GameObject left = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    GameObject left = GameObject.Instantiate(walls);
                     left.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
-                    left.GetComponent<Transform>().localScale = new Vector3(0.001f, height, hallSize);
-                    left.GetComponent<BoxCollider>().size = new Vector3(150.0f, left.GetComponent<BoxCollider>().size.y,
-                                                  left.GetComponent<BoxCollider>().size.z);
-                    Material newMat = Resources.Load("dungeonwalls") as Material;
-                    left.GetComponent<Renderer>().material = newMat;
+                    left.GetComponent<Transform>().localScale =  (new Vector3(hallSize * left.GetComponent<Transform>().localScale.x, 
+                        height * left.GetComponent<Transform>().localScale.y, hallSize * left.GetComponent<Transform>().localScale.z));
                 }
 
                 if (dungeon[j, i].right)
                 {
-                    GameObject right = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                     GameObject right = GameObject.Instantiate(walls);
                     right.GetComponent<Transform>().position = new Vector3(topLeftX + hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
-                    right.GetComponent<Transform>().localScale = new Vector3(0.001f, height, hallSize);
-                    right.GetComponent<BoxCollider>().size = new Vector3(150.0f, right.GetComponent<BoxCollider>().size.y,
-                                                  right.GetComponent<BoxCollider>().size.z);
-                    Material newMat = Resources.Load("dungeonwalls") as Material;
-                    right.GetComponent<Renderer>().material = newMat;
+                    right.GetComponent<Transform>().localScale = (new Vector3(hallSize * right.GetComponent<Transform>().localScale.x,
+                         height * right.GetComponent<Transform>().localScale.y, hallSize * right.GetComponent<Transform>().localScale.z));
                 }
 
                 if (dungeon[j, i].bottom)
                 {
-                    GameObject bottom = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    GameObject bottom = GameObject.Instantiate(walls);//GameObject.CreatePrimitive(PrimitiveType.Cube);
                     bottom.GetComponent<Transform>().position = new Vector3(topLeftX, floor + height / 2.0f - 0.001f, topLeftZ - hallSize / 2);
-                    bottom.GetComponent<Transform>().localScale = new Vector3(hallSize, height, 0.001f);
-                    bottom.GetComponent<BoxCollider>().size = new Vector3(bottom.GetComponent<BoxCollider>().size.x,
-                                              bottom.GetComponent<BoxCollider>().size.y, 150.0f);
-                    Material newMat = Resources.Load("dungeonwalls") as Material;
-                    bottom.GetComponent<Renderer>().material = newMat;
+                    bottom.GetComponent<Transform>().Rotate(0.0f, 00.0f, 90.0f);
+                    bottom.GetComponent<Transform>().localScale = (new Vector3(hallSize * bottom.GetComponent<Transform>().localScale.x,
+                         height * bottom.GetComponent<Transform>().localScale.y, hallSize * bottom.GetComponent<Transform>().localScale.z));
                 }
 
                 if (dungeon[j, i].top)
                 {
-                    GameObject top = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    GameObject top = GameObject.Instantiate(walls);
                     top.GetComponent<Transform>().position = new Vector3(topLeftX, floor + height / 2.0f - 0.001f, topLeftZ + hallSize / 2);
-                    top.GetComponent<Transform>().localScale = new Vector3(hallSize, height, 0.001f);
-                    top.GetComponent<BoxCollider>().size = new Vector3(top.GetComponent<BoxCollider>().size.x,
-                                                                  top.GetComponent<BoxCollider>().size.y, 150.0f);
-                    Material newMat = Resources.Load("dungeonwalls") as Material;
-                    top.GetComponent<Renderer>().material = newMat;
+                    top.GetComponent<Transform>().Rotate(0.0f, 0.0f, 90.0f);
+                    top.GetComponent<Transform>().localScale = (new Vector3(hallSize * top.GetComponent<Transform>().localScale.x,
+                        height * top.GetComponent<Transform>().localScale.y, hallSize * top.GetComponent<Transform>().localScale.z));
                 }
-                
-                GameObject theFloor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                theFloor.GetComponent<Transform>().position = new Vector3(topLeftX, floor, topLeftZ);
-                theFloor.GetComponent<Transform>().localScale = new Vector3( hallSize, 0.001f, hallSize);
-                Material newst = Resources.Load("dungeonfloor") as Material;
-                theFloor.GetComponent<Renderer>().material = newst;
 
                 topLeftX += hallSize;
+
+                GameObject theFloor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                theFloor.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor, topLeftZ);
+                theFloor.GetComponent<Transform>().localScale = new Vector3(hallSize, 0.001f, hallSize);
+                Material newat = Resources.Load("dungeonfloor") as Material;
+                theFloor.GetComponent<Renderer>().material = newat;
 
             }
             topLeftZ -= hallSize;
