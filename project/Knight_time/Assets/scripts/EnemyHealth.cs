@@ -27,10 +27,6 @@ public class EnemyHealth : MonoBehaviour
         {
             if(2.0f < (TimeTracker += Time.deltaTime))
             {
-                foreach(Collider c in Disable)
-                {
-                    c.enabled = false;
-                }
                 Destroy(RootToDestroy);
             }
         }
@@ -59,6 +55,10 @@ public class EnemyHealth : MonoBehaviour
                 }
                // modifyRender.enabled = false;
                 IsDying = true;
+                foreach (Collider c in Disable)
+                {
+                    c.enabled = false;
+                }
             }
             else
             {

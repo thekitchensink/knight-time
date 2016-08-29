@@ -12,7 +12,7 @@ public class BaseMaceAI : MonoBehaviour
     public float LaunchPower;
     public float LaunchHeight;
     public float MinTimeBetweenLaunches;
-
+    public float Damage;
 
     private GameObject Player;
     private GameObject PlayerLaunchController;
