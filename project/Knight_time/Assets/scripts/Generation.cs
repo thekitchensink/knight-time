@@ -3,42 +3,46 @@ using System.Collections;
 
 class cell
 {
-    public bool left;
-    public bool right;
-    public bool top;
-    public bool bottom;
+	public bool left;
+	public bool right;
+	public bool top;
+	public bool bottom;
 
-    public int group;
+  public int group;
 
-    public bool pickup;
+  public bool pickup;
 
-    public cell(bool L, bool R, bool T, bool B, int G)
+  public cell()
+  {
+  }
+
+  public cell(bool L, bool R, bool T, bool B, int G)
+  {
+    left = L;
+    right = R;
+    top = T;
+    bottom = B;
+    group = G;
+
+    int aRand = Random.Range(0, 10);
+    if(aRand == 1)
     {
-        left = L;
-        right = R;
-        top = T;
-        bottom = B;
-        group = G;
-        int aRand = Random.Range(0, 10);
-        if (aRand == 5)
-        {
-            pickup = true;
-        }
-        else
-        {
-            pickup = false;
-        }
+      pickup = true;
     }
+    else
+    {
+      pickup = false;
+    }
+  }
 }
 
-public class Generation : MonoBehaviour
-{
+public class Generation : MonoBehaviour {
+
+    public int xDense = 4;
+    public int yDense = 3;
+
     public GameObject walls;
     public GameObject Pickup;
-    public GameObject player;
-
-    public int xDense = 3;
-    public int yDense = 3;
 
     public int width, height;
     public float topLeftX, topLeftZ, hallSize, yheight, floor;
@@ -54,101 +58,95 @@ public class Generation : MonoBehaviour
         generateMap(width, height);
         buildMap(topLeftX, topLeftZ, hallSize, yheight, floor);
     }
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
-    // Update is called once per frame
-    void Update()
+	void generateMap(int width, int height)
+  {
+    if (xDense <= 1) xDense = 4;
+    if (yDense <= 1) yDense = 3;
+
+    dungeon = new cell[width, height];
+
+    this.Height = height;
+    this.Width = width;
+    
+    //needs to be at least 3 by 3
+    if (width < 3 && height < 3)
+      return;
+		
+    //initialize everyting to null
+    for (int j = 0; j < height; ++j)
     {
-
+      for (int i = 0; i < width; ++i)
+      {
+         dungeon[j, i] = null;      
+      }
     }
 
-    void generateMap(int width, int height)
+    for (int j = 0; j < height; ++j)
     {
-        if (xDense <= 1) xDense = 3;
-        if (yDense <= 1) yDense = 3;
+      //generate first row
+      for (int i = 0; i < width; ++i)
+      {
+        if(dungeon[j, i] == null)
+          dungeon[j, i] = new cell( true, true, true, true, j * width + i ); 
+      }
 
-        dungeon = new cell[width, height];
-
-        this.Height = height;
-        this.Width = width;
-
-        //needs to be at least 3 by 3
-        if (width < 3 && height < 3)
-            return;
-
-        //initialize everyting to null
-        for (int j = 0; j < height; ++j)
+      //randomly merge adjacent sets
+      for (int i = 1; i < width; ++i)
+      {
+        int choice = Random.Range((int)0, (int)xDense);
+        if (choice == 1)
         {
-            for (int i = 0; i < width; ++i)
-            {
-                dungeon[j, i] = null;
-            }
-        }
+          dungeon[j, i - 1].right = false;
+          dungeon[j, i].left = false;
 
-        for (int j = 0; j < height; ++j)
+          dungeon[j, i].group = dungeon[j, i - 1].group;
+        }
+      }
+
+      //at least once for each group, add extentions going down
+      if(j+1 < height)
+      {
+        int last = -1;
+        for (int i = 0; i < width; ++i)
         {
-            //generate first row
-            for (int i = 0; i < width; ++i)
+          int current = dungeon[j, i].group;
+          bool has = false;
+          while (!has && current != last)
+          {
+            for (int k = 0; (k < width); ++k)
             {
-                if (dungeon[j, i] == null)
-                {
-                    dungeon[j, i] = new cell(true, true, true, true, j * width + i);
-                }
+              int choice = Random.Range((int)0, (int)yDense);
+              if (choice == 1 && dungeon[j, k].group == current)
+              {
+                //extend the bottom
+                dungeon[j, k].bottom = false;
+
+                dungeon[j + 1, k] = new cell(true, true, false, true, current);
+
+                has = true;
+
+                last = current;
+              }
             }
+          }
 
-            //randomly merge adjacent sets
-            for (int i = 1; i < width; ++i)
-            {
-                int choice = Random.Range((int)0, (int)xDense);
-                if (choice == 1)
-                {
-                    dungeon[j, i - 1].right = false;
-                    dungeon[j, i].left = false;
-
-                    dungeon[j, i].group = dungeon[j, i - 1].group;
-                }
-            }
-
-            //at least once for each group, add extentions going down
-            if (j + 1 < height)
-            {
-                int last = -1;
-                for (int i = 0; i < width; ++i)
-                {
-                    int current = dungeon[j, i].group;
-                    bool has = false;
-
-                    while (!has && current != last)
-                    {
-                        for (int k = 0; (k < width); ++k)
-                        {
-                            int choice = Random.Range((int)0, (int)yDense);
-                            if (choice == 1 && dungeon[j, k].group == current)
-                            {
-                                //extend the bottom
-                                dungeon[j, k].bottom = false;
-
-                                dungeon[j + 1, k] = new cell(true, true, false, true, current);
-
-                                has = true;
-
-                                last = current;
-                            }
-                        }
-                    }
-                }
-            }
         }
-    }
+      }
 
-    void updateMiniMap()
-    {
 
     }
+	}   
 
-    void buildMap(float topLeftX, float topLeftZ, float hallSize, float height, float floor)
-    {
-        float t = topLeftX;
-        float r = topLeftZ;
+
+  void buildMap(float topLeftX, float topLeftZ, float hallSize, float height, float floor)	
+  {
+    float t = topLeftX;
 
         for (int j = 0; j < this.Height; ++j)
         {
@@ -161,9 +159,6 @@ public class Generation : MonoBehaviour
                     left.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     left.GetComponent<Transform>().localScale = (new Vector3(hallSize * left.GetComponent<Transform>().localScale.x,
                         height * left.GetComponent<Transform>().localScale.y, hallSize * left.GetComponent<Transform>().localScale.z));
-
-                    if (i == 0)
-                        left.GetComponent<DestroyWall>().enable = false;
                 }
 
                 if (dungeon[j, i].right)
@@ -172,9 +167,6 @@ public class Generation : MonoBehaviour
                     right.GetComponent<Transform>().position = new Vector3(topLeftX + hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     right.GetComponent<Transform>().localScale = (new Vector3(hallSize * right.GetComponent<Transform>().localScale.x,
                          height * right.GetComponent<Transform>().localScale.y, hallSize * right.GetComponent<Transform>().localScale.z));
-
-                    if (i == this.Width - 1)
-                        right.GetComponent<DestroyWall>().enable = false;
                 }
 
                 if (dungeon[j, i].bottom)
@@ -184,9 +176,6 @@ public class Generation : MonoBehaviour
                     bottom.GetComponent<Transform>().Rotate(0.0f, 00.0f, 90.0f);
                     bottom.GetComponent<Transform>().localScale = (new Vector3(hallSize * bottom.GetComponent<Transform>().localScale.x,
                          height * bottom.GetComponent<Transform>().localScale.y, hallSize * bottom.GetComponent<Transform>().localScale.z));
-
-                    if (j == this.Height - 1)
-                        bottom.GetComponent<DestroyWall>().enable = false;
                 }
 
                 if (dungeon[j, i].top)
@@ -195,10 +184,7 @@ public class Generation : MonoBehaviour
                     top.GetComponent<Transform>().position = new Vector3(topLeftX, floor + height / 2.0f - 0.001f, topLeftZ + hallSize / 2);
                     top.GetComponent<Transform>().Rotate(0.0f, 0.0f, 90.0f);
                     top.GetComponent<Transform>().localScale = (new Vector3(hallSize * top.GetComponent<Transform>().localScale.x,
-                      height * top.GetComponent<Transform>().localScale.y, hallSize * top.GetComponent<Transform>().localScale.z));
-
-                    if(j == 0)
-                      top.GetComponent<DestroyWall>().enable = false;
+                        height * top.GetComponent<Transform>().localScale.y, hallSize * top.GetComponent<Transform>().localScale.z));
                 }
 
                 topLeftX += hallSize;
@@ -219,8 +205,6 @@ public class Generation : MonoBehaviour
                 if (dungeon[j, i].pickup)
                 {
                     GameObject pick = GameObject.Instantiate(Pickup);
-                    Pickup thing = pick.GetComponentInChildren<Pickup>();
-                    thing.player = player;
                     pick.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
                 }
             }

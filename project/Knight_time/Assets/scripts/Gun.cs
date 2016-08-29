@@ -11,79 +11,51 @@ public class Gun : MonoBehaviour
     void Start () {
         SkipDaFrame = true;
     }
-
+    
     // Update is called once per frame
-    void Update()
-    {
-        Base_bullet my_bullet = null;
-        Base_bullet[] compArray = GetComponents<Base_bullet>();
-
-        for (int i = 0; i < compArray.Length; ++i)
+    void Update () {
+        if (SkipDaFrame)
         {
-            if (compArray[i].isActiveAndEnabled)
+            bool prev = MouseisUp;
+            MouseisUp = !Input.GetButton("Fire1");
+            if (MouseisUp)
             {
-                my_bullet = compArray[i];
-                break;
+                if (prev != MouseisUp)
+                {
+                    GetComponent<Base_bullet>().OnMouseUp();
+                }
+                GetComponent<Base_bullet>().Frame_Mouse_Is_Up();
+                GetComponent<Base_bullet>().HeldDownFor = 0;
             }
-        }
-
-        if (my_bullet != null)
-        {
-            if (SkipDaFrame)
+            else
             {
-                bool prev = MouseisUp;
-                MouseisUp = !Input.GetButton("Fire1");
-                if (MouseisUp)
+                if (prev != MouseisUp)
                 {
-                    my_bullet.Frame_Mouse_Is_Up();
-                    if (prev != MouseisUp)
-                    {
-                        if (my_bullet.isActiveAndEnabled)
-                        {
-                            my_bullet.OnMouseUp();
-                        }
-                    }
-                    my_bullet.HeldDownFor = 0;
+                    GetComponent<Base_bullet>().OnMouseDown();
                 }
-                else
-                {
-                    my_bullet.Frame_Mouse_Is_Down();
-                    if (prev != MouseisUp)
-                    {
-                        if (my_bullet.isActiveAndEnabled)
-                        {
-                            my_bullet.OnMouseDown();
-                        }
-                    }
-                    my_bullet.HeldDownFor += Time.deltaTime;
-                }
+                GetComponent<Base_bullet>().Frame_Mouse_Is_Down();
+                GetComponent<Base_bullet>().HeldDownFor += Time.deltaTime;
+            }
 
-                AltFireisUp = !Input.GetButton("Fire2");
-                if (AltFireisUp)
+            AltFireisUp = !Input.GetButton("Fire2");
+            if (AltFireisUp)
+            {
+                if(prev != AltFireisUp)
                 {
-                    if (my_bullet.isActiveAndEnabled)
-                    {
-                        if (prev != AltFireisUp)
-                        {
-                            my_bullet.OnAltFireUp();
-                        }
-                    }
-                }
-                else
-                {
-                    if (my_bullet.isActiveAndEnabled)
-                    {
-                        if (prev != AltFireisUp)
-                        {
-                            my_bullet.OnAltFireDown();
-                        }
-                    }
+                    GetComponent<Base_bullet>().OnAltFireUp();
                 }
             }
             else
             {
-                SkipDaFrame = false;
+                if(prev != AltFireisUp)
+                {
+                    GetComponent<Base_bullet>().OnAltFireDown();
+                }
             }
+        }
+        else
+        {
+            SkipDaFrame = false;
         }
     }
 }

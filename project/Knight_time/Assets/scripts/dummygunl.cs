@@ -10,7 +10,7 @@ public class dummygunl : Base_bullet {
     
     // Update is called once per frame
     void Update () {
-        Debug.Log("GunL");
-        Debug.Log(HeldDownFor);
+     //   Debug.Log("GunL");
+     //   Debug.Log(HeldDownFor);
     }
 }

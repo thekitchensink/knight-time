@@ -748,6 +748,10 @@ MonoBehaviour:
   LaunchSpeedMultiplier: 20
   ForwardBaseSpeed: 10
   BulletRelativeSpawnPosition: {x: 0, y: 0.5, z: 1}
+  BulletRelativeSpawnScale: {x: 0, y: 0, z: 0}
+  BulletRelativeFinalSpawnScale: {x: 0, y: 0, z: 0}
+  StartingBulletRotationSpeed: 0
+  EndingBulletRotationSpeed: 0
 --- !u!114 &1057160310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +803,10 @@ MonoBehaviour:
   LaunchSpeedMultiplier: 100
   ForwardBaseSpeed: 100
   BulletRelativeSpawnPosition: {x: 0, y: 0.5, z: 2.25}
+  BulletRelativeSpawnScale: {x: 0, y: 0, z: 0}
+  BulletRelativeFinalSpawnScale: {x: 0, y: 0, z: 0}
+  StartingBulletRotationSpeed: 0
+  EndingBulletRotationSpeed: 0
 --- !u!114 &1057160313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,11 +1127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35aa9f70f0f39e448cd121e020e94a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
-  Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
-  player: {fileID: 1057160308}
   xDense: 2
   yDense: 2
+  walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
+  Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
   width: 128
   height: 128
   topLeftX: -128
