@@ -236,6 +236,7 @@ MonoBehaviour:
   LaunchPower: 400
   LaunchHeight: 1
   MinTimeBetweenLaunches: 1
+  Damage: 40
 --- !u!135 &135000014215292648
 SphereCollider:
   m_ObjectHideFlags: 1
