@@ -104,7 +104,7 @@ public class Generation : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        PowerUpChance = 10;
+        cell.PickupChance = 10;
         cell.EnemySpawnChance = 10;
         randGoal = Random.Range(((width - 1) / 2) * ((height - 1) / 2), (width - 1) * (height - 1));
         generateMap(width, height);
@@ -254,7 +254,7 @@ public class Generation : MonoBehaviour {
                 theCeil.GetComponent<Renderer>().material = newat;
                 theCeil.layer = LayerMask.NameToLayer("Player");
 
-                if((randGoal == (j) * this.Width + (i )) && hasntGoal )
+                if((randGoal == (j) * this.Width + (i)) && hasntGoal )
                 {
                     hasntGoal = false;
                     GameObject goal = GameObject.Instantiate(thegoal);
