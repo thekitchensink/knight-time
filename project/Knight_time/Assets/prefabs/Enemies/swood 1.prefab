@@ -84,6 +84,7 @@ GameObject:
   - 4: {fileID: 4000012537190186}
   - 95: {fileID: 95000012728748366}
   - 114: {fileID: 114000014220795310}
+  - 114: {fileID: 114000011662754352}
   m_Layer: 0
   m_Name: swood 1
   m_TagString: Untagged
@@ -220,6 +221,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011662754352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013055848340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa381098a5b51e140a478f8daf99c331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
+  speed: 6
+  unitLength: 4.6
 --- !u!114 &114000014164069924
 MonoBehaviour:
   m_ObjectHideFlags: 1
