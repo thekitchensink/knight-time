@@ -164,3 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerGameObjectName: FPSController
   addition: {fileID: 0}
+  mats:
+  - {fileID: 2100000, guid: d27783d7febd0d842ac6422e1814f1d7, type: 2}
+  - {fileID: 2100000, guid: b687dc577626b8c4aa43dd06d6e3e37b, type: 2}
