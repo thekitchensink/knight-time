@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class inventory : MonoBehaviour
 {
     public PhysicsBulletL pbl;
 
     ArrayList bullet_types;
-    int current_type = 0;
+	[HideInInspector]
+    public int current_type = 0;
     int total_bullet_amount;
+	public List<int> ammoCount;
 
     bool bounce = false;
 
@@ -18,6 +21,11 @@ public class inventory : MonoBehaviour
         bullet_types.Add(pbl);
 
         total_bullet_amount = bullet_types.Count;
+
+		ammoCount = new List<int>();
+		ammoCount.Add(10);
+
+
     }
 
     public void PickupPowerup(Base_bullet newBulletType)
@@ -25,9 +33,14 @@ public class inventory : MonoBehaviour
         if (!bullet_types.Contains(newBulletType))
         {
             bullet_types.Add(newBulletType);
+			ammoCount.Add(5);
             total_bullet_amount += 1;
             //            UpdateType(total_bullet_amount - 1);
         }
+		else
+		{
+			ammoCount[bullet_types.IndexOf(newBulletType)] += 8;
+		}
         PhysicsBulletL pbl = newBulletType as PhysicsBulletL;
         if (pbl != null)
             Debug.Log("PhysicsBulletL");
@@ -44,7 +57,7 @@ public class inventory : MonoBehaviour
     void Update()
     {
         bool b;
-        if (b = Input.GetButton("SwitchBullet") && !bounce)
+        if (b = Input.GetButtonDown("SwitchBullet") && !bounce)
         {
             bounce = true;
 
@@ -58,7 +71,7 @@ public class inventory : MonoBehaviour
 
     void UpdateType(int newType)
     {
-        (bullet_types[current_type] as Base_bullet).enabled = false;
+		(bullet_types[current_type] as Base_bullet).enabled = false;
 
         current_type = newType;
 
@@ -72,6 +85,6 @@ public class inventory : MonoBehaviour
             current_type = total_bullet_amount + current_type;
         }
 
-        (bullet_types[current_type] as Base_bullet).enabled = true;
+		(bullet_types[current_type] as Base_bullet).enabled = true;
     }
 }

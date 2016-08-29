@@ -46,13 +46,15 @@ public class PhysicsBulletL : Base_bullet {
         g.GetComponent<KillYourself>().TrackTime = 0;
     }
     public override void OnMouseDown()
-    {
-   //     Debug.Log("Fuck");
-        // Reticle.GetComponent<Image>().CrossFadeColor(color, ReticleFadeInTime, false, true);
-        g = Instantiate(SpawnPrefab, transform) as GameObject;
-        g.transform.localPosition = BulletRelativeSpawnPosition;
-        g.transform.localRotation = Quaternion.identity;
-        g.GetComponent<SpinningParticles>().RotationSpeed = StartingBulletRotationSpeed;
+    {  
+		if(GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] > 0)
+		{			
+			g = Instantiate(SpawnPrefab, transform) as GameObject;
+			g.transform.localPosition = BulletRelativeSpawnPosition;
+			g.transform.localRotation = Quaternion.identity;
+			g.GetComponent<SpinningParticles>().RotationSpeed = StartingBulletRotationSpeed;
+		}
+
     }
     public override void Frame_Mouse_Is_Up()
     {
@@ -60,19 +62,23 @@ public class PhysicsBulletL : Base_bullet {
     }
     public override void OnMouseUp()
     {
-        Transform t = GetComponent<Transform>();
+		if(GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] > 0)
+		{
+			GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] -= 1;
+	        Transform t = GetComponent<Transform>();
 
-        Rigidbody rb = g.GetComponent<Rigidbody>();
-        Vector3 v = new Vector3(Random.Range(
-            (-((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold)) > 0.0f ? 0 : (-((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold)),
-            (((ShotRandomnessThreshold - HeldDownFor)) / ShotRandomnessThreshold) < 0.0f ? 0 : (((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold))), 0);
+	        Rigidbody rb = g.GetComponent<Rigidbody>();
+	        Vector3 v = new Vector3(Random.Range(
+	            (-((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold)) > 0.0f ? 0 : (-((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold)),
+	            (((ShotRandomnessThreshold - HeldDownFor)) / ShotRandomnessThreshold) < 0.0f ? 0 : (((ShotRandomnessThreshold - HeldDownFor) / ShotRandomnessThreshold))), 0);
 
-        v *= ShotRandomness;
+	        v *= ShotRandomness;
 
-        rb.velocity = (t.forward * ((HeldDownFor > MaxLaunchSpeed ? MaxLaunchSpeed : HeldDownFor) * LaunchSpeedMultiplier + ForwardBaseSpeed)) + v;
-        rb.useGravity = false;
-        //Reticle.GetComponent<Image>().canvasRenderer.SetColor(c);
- //       Debug.Log("Bitches ain't shit but hoes and tricks");
-        g.transform.SetParent(null);
+	        rb.velocity = (t.forward * ((HeldDownFor > MaxLaunchSpeed ? MaxLaunchSpeed : HeldDownFor) * LaunchSpeedMultiplier + ForwardBaseSpeed)) + v;
+	        rb.useGravity = false;
+	        //Reticle.GetComponent<Image>().canvasRenderer.SetColor(c);
+	 //       Debug.Log("Bitches ain't shit but hoes and tricks");
+	        g.transform.SetParent(null);
+		}
     }
 }

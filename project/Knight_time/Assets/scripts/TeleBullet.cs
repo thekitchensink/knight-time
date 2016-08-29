@@ -17,9 +17,10 @@ public class TeleBullet : Base_bullet
             dicksOut = false;
 
             transform.position = lastBullet.transform.position;
+			GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] -= 1;
             Destroy(lastBullet);
         }
-        else
+		else if(GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] > 0)
         {
             dicksOut = true;
             Transform t = GetComponent<Transform>();
