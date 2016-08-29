@@ -87,4 +87,7 @@ MonoBehaviour:
   StartWith: {fileID: 1000012095381576}
   ZDistance: 0
   RotationSpeed: 0
+  DamageWithSpeedInMind: 1
+  Damage: 2
+  BaseDamage: 0
   particles: []

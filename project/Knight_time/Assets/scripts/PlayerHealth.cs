@@ -7,6 +7,11 @@ class FuckYou : System.Exception
 public class PlayerHealth : MonoBehaviour {
 
     public static PlayerHealth sing;
+    public static int Health
+    {
+        get { return sing.CurrentHealthAmount; }
+      //  set { sing.CurrentHealthAmount = Health; }
+    }
 
     public int StartingHealthAmount;
     public int CurrentHealthAmount;
@@ -39,5 +44,12 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         Debug.Log(amount);
+
+        if(sing.CurrentHealthAmount <= 0)
+        {
+            Debug.Log("ded");
+
+            //insert player death code here idk
+        }
     }
 }

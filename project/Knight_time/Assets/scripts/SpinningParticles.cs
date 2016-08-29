@@ -9,6 +9,10 @@ public class SpinningParticles : MonoBehaviour {
     public GameObject StartWith;
     public float ZDistance;
     public float RotationSpeed;
+    public float DamageWithSpeedInMind;
+
+    public float Damage;
+    public float BaseDamage;
 
     public List<GameObject> particles;
 
@@ -30,5 +34,6 @@ public class SpinningParticles : MonoBehaviour {
         Vector3 v = transform.rotation.eulerAngles;
         v.z += RotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.Euler(v);
+        Damage = DamageWithSpeedInMind * RotationSpeed / 400 + BaseDamage;
 	}
 }
