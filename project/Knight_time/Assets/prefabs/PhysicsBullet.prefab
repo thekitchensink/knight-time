@@ -88,6 +88,6 @@ MonoBehaviour:
   ZDistance: 0
   RotationSpeed: 0
   DamageWithSpeedInMind: 1
-  Damage: 2
-  BaseDamage: 0
+  Damage: 0
+  BaseDamage: 1
   particles: []
