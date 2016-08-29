@@ -4,6 +4,7 @@ using System.Collections;
 public class inventory : MonoBehaviour
 {
     public PhysicsBulletL pbl;
+    public TeleBullet tbl;
 
     ArrayList bullet_types;
     int current_type = 0;

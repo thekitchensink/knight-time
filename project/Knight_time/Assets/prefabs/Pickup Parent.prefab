@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b524735cc1f42442855f47ca65f5e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  PlayerGameObjectName: FPSController
   addition: {fileID: 0}

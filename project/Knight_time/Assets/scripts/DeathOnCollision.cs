@@ -7,7 +7,7 @@ public class DeathOnCollision : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,13 +18,15 @@ public class DeathOnCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Instantiate(ParticleEffect);
+        Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        Instantiate(ParticleEffect);
+        Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
+
+
 }

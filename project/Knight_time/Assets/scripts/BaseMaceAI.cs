@@ -6,13 +6,16 @@ public class BaseMaceAI : MonoBehaviour
     public float Speed;
     public float Distance;
     public float StartingDistance;
-    public GameObject Player;
-    public GameObject PlayerLaunchController;
+    //public GameObject Player;
+    //public GameObject PlayerLaunchController;
     public GameObject RotationPivot;
     public float LaunchPower;
     public float LaunchHeight;
     public float MinTimeBetweenLaunches;
 
+
+    private GameObject Player;
+    private GameObject PlayerLaunchController;
     private float TimeTracker;
 
     private static float LaunchedTimeTracker;
@@ -23,6 +26,8 @@ public class BaseMaceAI : MonoBehaviour
     // Use this for initialization
     void Start () {
         TimeTracker = 0;
+        Player = GameObject.Find("FPSController");
+        PlayerLaunchController = GameObject.Find("LaunchController");
     }
     void OnEnable()
     {

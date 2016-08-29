@@ -16,25 +16,36 @@ public class Gun : MonoBehaviour
     void Update () {
         if (SkipDaFrame)
         {
+            Base_bullet[] bb = GetComponents<Base_bullet>();
+            Base_bullet k = bb[0];
+            foreach(Base_bullet b in bb)
+            {
+                if (b.isActiveAndEnabled)
+                {
+                    k = b;
+                }
+            }
+
+
             bool prev = MouseisUp;
             MouseisUp = !Input.GetButton("Fire1");
             if (MouseisUp)
             {
                 if (prev != MouseisUp)
                 {
-                    GetComponent<Base_bullet>().OnMouseUp();
+                    k.OnMouseUp();
                 }
-                GetComponent<Base_bullet>().Frame_Mouse_Is_Up();
-                GetComponent<Base_bullet>().HeldDownFor = 0;
+                k.Frame_Mouse_Is_Up();
+                k.HeldDownFor = 0;
             }
             else
             {
                 if (prev != MouseisUp)
                 {
-                    GetComponent<Base_bullet>().OnMouseDown();
+                    k.OnMouseDown();
                 }
-                GetComponent<Base_bullet>().Frame_Mouse_Is_Down();
-                GetComponent<Base_bullet>().HeldDownFor += Time.deltaTime;
+                k.Frame_Mouse_Is_Down();
+                k.HeldDownFor += Time.deltaTime;
             }
 
             AltFireisUp = !Input.GetButton("Fire2");
@@ -42,14 +53,14 @@ public class Gun : MonoBehaviour
             {
                 if(prev != AltFireisUp)
                 {
-                    GetComponent<Base_bullet>().OnAltFireUp();
+                    k.OnAltFireUp();
                 }
             }
             else
             {
                 if(prev != AltFireisUp)
                 {
-                    GetComponent<Base_bullet>().OnAltFireDown();
+                    k.OnAltFireDown();
                 }
             }
         }
