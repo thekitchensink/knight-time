@@ -109,4 +109,8 @@ public class PlayerHealth : MonoBehaviour {
             SceneManager.LoadScene("youdie");
         }
     }
+    public static void AddHealth(int amount)
+    {
+        sing.CurrentHealthAmount += amount;
+    }
 }
