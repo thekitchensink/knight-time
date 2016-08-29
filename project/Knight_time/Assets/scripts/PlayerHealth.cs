@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 class FuckYou : System.Exception
 { }
@@ -43,13 +44,14 @@ public class PlayerHealth : MonoBehaviour {
             sing.CurrentHealthAmount -= amount;
         }
 
-        Debug.Log(amount);
+        Debug.Log("this helth" + sing.CurrentHealthAmount);
 
         if(sing.CurrentHealthAmount <= 0)
         {
             Debug.Log("ded");
 
-            //insert player death code here idk
+
+            SceneManager.LoadScene("youdie");
         }
     }
 }

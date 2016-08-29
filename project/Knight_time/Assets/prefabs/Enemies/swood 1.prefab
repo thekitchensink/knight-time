@@ -237,6 +237,7 @@ MonoBehaviour:
   RootToDestroy: {fileID: 1000013055848340}
   StartingHealth: 10
   CurrentHealth: 0
+  Disable: []
 --- !u!114 &114000014220795310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDist: 3
   f: 0.51
-  DamageAmount: 0
+  DamageAmount: 10
 --- !u!137 &137000011412731052
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
