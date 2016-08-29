@@ -8,11 +8,14 @@ public class Pickup : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject == player)
-        {
-            player.GetComponent<inventory>().PickupPowerup(addition);
-            Destroy(gameObject);
-        }
+        print(collider.gameObject.name);
+      if(collider.gameObject.name == player.name)
+      {
+        if(addition)
+          player.GetComponent<inventory>().PickupPowerup(addition);
+
+        Destroy(this.gameObject);
+      }
     }
 
     // Update is called once per frame

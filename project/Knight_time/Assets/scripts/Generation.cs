@@ -35,6 +35,7 @@ public class Generation : MonoBehaviour
 {
     public GameObject walls;
     public GameObject Pickup;
+    public GameObject player;
 
     public int xDense = 3;
     public int yDense = 3;
@@ -192,6 +193,7 @@ public class Generation : MonoBehaviour
                 theFloor.GetComponent<Transform>().localScale = new Vector3(hallSize, 0.001f, hallSize);
                 Material newat = Resources.Load("dungeonfloor") as Material;
                 theFloor.GetComponent<Renderer>().material = newat;
+                theFloor.layer = LayerMask.NameToLayer("Player");
 
                 GameObject theCeil = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 theCeil.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 1.15f, topLeftZ);
@@ -202,6 +204,8 @@ public class Generation : MonoBehaviour
                 if (dungeon[j, i].pickup)
                 {
                     GameObject pick = GameObject.Instantiate(Pickup);
+                    Pickup thing = pick.GetComponentInChildren<Pickup>();
+                    thing.player = player;
                     pick.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
                 }
             }
