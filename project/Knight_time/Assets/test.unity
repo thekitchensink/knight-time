@@ -1124,6 +1124,13 @@ MonoBehaviour:
   player: {fileID: 1057160308}
   xDense: 2
   yDense: 2
+  width: 128
+  height: 128
+  topLeftX: -128
+  topLeftZ: 128
+  hallSize: 4.6
+  yheight: 4
+  floor: 0
 --- !u!4 &1076755709
 Transform:
   m_ObjectHideFlags: 0

@@ -40,6 +40,9 @@ public class Generation : MonoBehaviour
     public int xDense = 3;
     public int yDense = 3;
 
+    public int width, height;
+    public float topLeftX, topLeftZ, hallSize, yheight, floor;
+
     private cell[,] dungeon;
 
     private int Height;
@@ -48,8 +51,8 @@ public class Generation : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        generateMap(10, 10);
-        buildMap(-10.0f, 10.0f, 4.6f, 4.0f, 0.0f);
+        generateMap(width, height);
+        buildMap(topLeftX, topLeftZ, hallSize, yheight, floor);
     }
 
     // Update is called once per frame

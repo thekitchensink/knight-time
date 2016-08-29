@@ -48,7 +48,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012795880438}
   serializedVersion: 2
-  lengthInSec: 2
+  lengthInSec: 1
   startDelay:
     scalar: 0
     maxCurve:
@@ -457,14 +457,14 @@ ParticleSystem:
       minMaxState: 3
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 320
+    maxNumParticles: 1000
     size3D: 0
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2
     enabled: 1
     type: 0
-    radius: 0.1
+    radius: 0.3
     angle: 25
     length: 5
     boxX: 1
@@ -485,7 +485,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 200
+      scalar: 1000
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -735,7 +735,7 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 10855845
+          rgba: 3881833
         key1:
           serializedVersion: 2
           rgba: 4230095394
@@ -1767,7 +1767,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3062613153ea47f42a262f065fec69d1, type: 2}
+  - {fileID: 2100000, guid: 7911795df27dd464190eed77dda90191, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
