@@ -13,8 +13,13 @@ public class Pickup : MonoBehaviour
     {
         player = GameObject.Find(PlayerGameObjectName);
         Base_bullet[] a = player.GetComponents<Base_bullet>();
-        int i = (int)Random.Range(0, a.Length);
-        addition = a[i];
+        int i = Random.Range(0, a.Length + 1);
+        if(i == a.Length)
+        {
+            addition = null;
+        }
+        else
+            addition = a[i];
 
         GetComponent<MeshRenderer>().material = mats[i];
     }
@@ -27,7 +32,7 @@ public class Pickup : MonoBehaviour
             if (addition)
                 player.GetComponent<inventory>().PickupPowerup(addition);
             else
-                Debug.Log("kys");
+                PlayerHealth.AddHealth(30);
             Destroy(this.gameObject);
         }
 
