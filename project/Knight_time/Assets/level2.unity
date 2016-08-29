@@ -208,8 +208,8 @@ MonoBehaviour:
   Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
   width: 8
   height: 8
-  topLeftX: -8
-  topLeftZ: 8
+  topLeftX: -16
+  topLeftZ: 16
   hallSize: 4.6
   yheight: 4
   floor: 0
@@ -237,7 +237,6 @@ GameObject:
   - 33: {fileID: 1358275655}
   - 65: {fileID: 1358275654}
   - 23: {fileID: 1358275653}
-  - 114: {fileID: 1358275657}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -306,17 +305,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!114 &1358275657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1358275652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37952ef9f07963a40b968ac2d2f55c8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1842882900
 GameObject:
   m_ObjectHideFlags: 0

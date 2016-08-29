@@ -42,7 +42,21 @@ public class DeathOnCollision : MonoBehaviour
         {
             eh.TakeDamage((int)sp.Damage);
         }
-        if(ParticleEffect != null)
+        DestroyWall wall = other.gameObject.GetComponent<DestroyWall>();
+        if (wall)
+        {
+            if (wall.enable)
+                wall.health--;
+
+            if (wall.health <= 0)
+            {
+                GameObject g = GameObject.Instantiate(Resources.Load("SmokeDust") as GameObject);
+                g.GetComponent<Transform>().position = other.gameObject.transform.position;
+
+                Destroy(other.gameObject);
+            }
+        }
+        if (ParticleEffect != null)
             Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
