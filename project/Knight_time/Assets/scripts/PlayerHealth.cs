@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.ImageEffects;
 
 class FuckYou : System.Exception
 { }
 
 public class PlayerHealth : MonoBehaviour {
+
+	private static VignetteAndChromaticAberration vaca;
+	private static NoiseAndGrain nag;
+	private static Fisheye fe;
+
+	private static float originalAbberation = 5;
+	private static float originalFish;
+	private static float originalGrain;
 
     public static PlayerHealth sing;
     public static int Health
@@ -28,15 +37,63 @@ public class PlayerHealth : MonoBehaviour {
         }
         else sing = this;
         CurrentHealthAmount = StartingHealthAmount;
+
+		GameObject g = gameObject.transform.FindChild("FirstPersonCharacter").gameObject;
+		vaca = g.GetComponent < VignetteAndChromaticAberration > ();
+		nag = g.GetComponent<NoiseAndGrain>();
+		fe = g.GetComponent<Fisheye>();
+
     }
     
     // Update is called once per frame
     void Update () {
         TimeTracker += Time.deltaTime;
+
+		if(vaca.chromaticAberration > originalAbberation)
+		{
+			vaca.chromaticAberration -= 0.8f;
+		}
+		if(vaca.chromaticAberration < originalAbberation)
+		{
+			vaca.chromaticAberration = originalAbberation;
+		}
+
+		if(nag.intensityMultiplier > originalGrain)
+		{
+			nag.intensityMultiplier -= 0.5f;
+		}
+		if(nag.intensityMultiplier < originalGrain)
+		{
+			nag.intensityMultiplier = originalGrain;
+		}
+
+		if(fe.strengthX > originalFish)
+		{
+			fe.strengthX -= 0.03f;
+		}
+		if(fe.strengthX < originalFish)
+		{
+			fe.strengthX = originalFish;
+		}
+
+		if(fe.strengthY > originalFish)
+		{
+			fe.strengthY -= 0.03f;
+		}
+		if(fe.strengthY < originalFish)
+		{
+			fe.strengthY = originalFish;
+		}
     }
 
     public static void TakeDamage(int amount)
     {
+		//GameObject go = sing.gameObject.transform.FindChild("FirstPersonCharacter").gameObject;
+		vaca.chromaticAberration = 60f;
+		nag.intensityMultiplier = 60f;
+		fe.strengthX = 0.8f;
+		fe.strengthY = 0.8f;
+
         if(sing.TimeTracker > sing.InvulnFrameLength)
         {
             sing.TimeTracker = 0;
@@ -49,8 +106,6 @@ public class PlayerHealth : MonoBehaviour {
         if(sing.CurrentHealthAmount <= 0)
         {
             Debug.Log("ded");
-
-
             SceneManager.LoadScene("youdie");
         }
     }
