@@ -107,8 +107,7 @@ public class Generation : MonoBehaviour {
     {
         cell.PickupChance = 10;
         cell.EnemySpawnChance = 10;
-        randGoal = Random.Range(((width - 1) / 2) * ((height - 1) / 2), (width - 1) * (height - 1));
-        GameObject.Find("FPSController").GetComponent<Transform>().position = new Vector3(topLeftX, floor + height/2.0f ,topLeftZ);
+        GameObject.Find("FPSController").GetComponent<Transform>().position = new Vector3(topLeftX, floor + yheight/2.0f ,topLeftZ);
         randGoalx = Random.Range((int)(2.0f*(width - 1)/3.0f), width- 1);// = Random.Range((int)((2.0f * (float)(width) / 3.0f) * (2.0f * (float)(height) / 3.0f)), (width - 1) * (height - 1));
         randGoaly = Random.Range((int)(2.0f * (height - 1) / 3.0f), height - 1);
         generateMap(width, height);
