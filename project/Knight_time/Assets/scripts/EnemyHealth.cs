@@ -25,8 +25,12 @@ public class EnemyHealth : MonoBehaviour
     void Update () {
         if(IsDying)
         {
+			
+
             if(2.0f < (TimeTracker += Time.deltaTime))
-            {
+			{
+				GetComponent<AudioSource> ().pitch = Random.Range (0.6f, 1f);
+				GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip, 0.8f);
                 foreach(Collider c in Disable)
                 {
                     c.enabled = false;
@@ -39,6 +43,9 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         Debug.Log(amount);
+
+		GetComponent<AudioSource> ().pitch = Random.Range (0.6f, 1f);
+		GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip ,0.1f);
         CurrentHealth -= amount;
         if (CurrentHealth <= 0)
         {

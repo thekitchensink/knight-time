@@ -40,7 +40,7 @@ public class EnableComponentOnTriggerEnter : MonoBehaviour {
         RFPC.enabled = true;
         COL.enabled = true;
         RB.isKinematic = false;
-        Debug.Log("launch");
+  //      Debug.Log("launch");
 
         Flying = true;
         TimeTracker = 0;
@@ -52,7 +52,7 @@ public class EnableComponentOnTriggerEnter : MonoBehaviour {
         RFPC.enabled = false;
         COL.enabled = false;
         RB.isKinematic = true;
-        Debug.Log("land");
+//        Debug.Log("land");
 
         Flying = false;
     }

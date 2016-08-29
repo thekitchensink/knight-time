@@ -15,6 +15,10 @@ public class PhysicsBulletL : Base_bullet {
     public float StartingBulletRotationSpeed;
     public float EndingBulletRotationSpeed;
 
+	public AudioSource GunSounds;
+	public AudioClip gunFire;
+	public AudioClip gunCharge;
+
     private GameObject g;
     // Use this for initialization
     void Start () {
@@ -52,7 +56,11 @@ public class PhysicsBulletL : Base_bullet {
         g = Instantiate(SpawnPrefab, transform) as GameObject;
         g.transform.localPosition = BulletRelativeSpawnPosition;
         g.transform.localRotation = Quaternion.identity;
-        g.GetComponent<SpinningParticles>().RotationSpeed = StartingBulletRotationSpeed;
+		g.GetComponent<SpinningParticles>().RotationSpeed = StartingBulletRotationSpeed;
+
+		GunSounds.pitch = Random.Range (0.8f, 0.9f);
+		GunSounds.clip = gunCharge;
+		GunSounds.Play ();
     }
     public override void Frame_Mouse_Is_Up()
     {
@@ -74,5 +82,9 @@ public class PhysicsBulletL : Base_bullet {
         //Reticle.GetComponent<Image>().canvasRenderer.SetColor(c);
  //       Debug.Log("Bitches ain't shit but hoes and tricks");
         g.transform.SetParent(null);
+
+		GunSounds.Stop ();
+		GunSounds.pitch = Random.Range (0.8f, 0.9f);
+		GunSounds.PlayOneShot (gunFire, 0.5f);
     }
 }

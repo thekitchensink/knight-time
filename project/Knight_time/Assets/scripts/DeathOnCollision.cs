@@ -5,15 +5,18 @@ public class DeathOnCollision : MonoBehaviour
 {
     public GameObject ParticleEffect;
     private SpinningParticles sp;
+
+	private Transform particleT;
+
     // Use this for initialization
     void Start()
     {
         sp = gameObject.transform.parent.gameObject.GetComponent<SpinningParticles>();
 
-        if(sp == null)
-        {
-            throw new FuckYou();
-        }
+		if (sp == null)
+			Destroy (this);
+
+		particleT = transform.FindChild ("GunParticles");
     }
 
     // Update is called once per frame
@@ -23,13 +26,20 @@ public class DeathOnCollision : MonoBehaviour
     }
 
     public void OnCollisionEnter(Collision collision)
-    {
-        EnemyHealth eh;
-        // don't turn this into == I know what I am doing pls
-        if(eh = collision.collider.gameObject.GetComponent<EnemyHealth>())
-        {
-            eh.TakeDamage((int)sp.Damage);
-        }
+	{
+		EnemyHealth eh;
+		// don't turn this into == I know what I am doing pls
+		if (eh = collision.collider.gameObject.GetComponent<EnemyHealth> ()) {
+			eh.TakeDamage ((int)sp.Damage);
+		}
+
+		if (particleT != null){
+			particleT.parent = null;
+			particleT.localScale = Vector3.one * 5;
+			KillYourself k = particleT.gameObject.AddComponent<KillYourself> ();
+			k.KillTime = 3f;
+		}
+
         if(ParticleEffect != null)
             Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -42,8 +52,15 @@ public class DeathOnCollision : MonoBehaviour
         {
             eh.TakeDamage((int)sp.Damage);
         }
-        if(ParticleEffect != null)
-            Instantiate(ParticleEffect, transform.position, Quaternion.identity);
+
+		if (particleT != null) {
+			particleT.parent = null;
+			particleT.localScale = Vector3.one * 5;
+			KillYourself k = particleT.gameObject.AddComponent<KillYourself> ();
+			k.KillTime = 3f;
+		}
+		if(ParticleEffect != null)
+        	Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

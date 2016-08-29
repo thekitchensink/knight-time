@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000013157264690}
   - 114: {fileID: 114000010385825972}
   - 114: {fileID: 114000012628998844}
+  - 82: {fileID: 82000013142072908}
   m_Layer: 8
   m_Name: FPSController
   m_TagString: Untagged
@@ -424,6 +425,7 @@ GameObject:
   - 4: {fileID: 4000010739222400}
   - 33: {fileID: 33000012570075050}
   - 23: {fileID: 23000013867849904}
+  - 82: {fileID: 82000014293988946}
   m_Layer: 8
   m_Name: actualgun
   m_TagString: Untagged
@@ -670,6 +672,154 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82000013142072908
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b91f3b6b38253406f9a5e849ec7df7a9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.52
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82000014293988946
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013948958998}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 37b0a9274c3b044d0a6f90232835f046, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.85
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.56
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000010144624226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -686,6 +836,7 @@ MonoBehaviour:
     type: 2}
   ForwardBaseSpeed: 50
   BulletRelativeSpawnPosition: {x: 0, y: 0.5, z: 2.5}
+  Charge: {fileID: 8300000, guid: cbaaa567c280e4abeb20f70576a3e814, type: 3}
 --- !u!114 &114000010165343860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -960,6 +1111,9 @@ MonoBehaviour:
   BulletRelativeFinalSpawnScale: {x: 0.1, y: 0.1, z: 0.1}
   StartingBulletRotationSpeed: 30
   EndingBulletRotationSpeed: 700
+  GunSounds: {fileID: 82000014293988946}
+  gunFire: {fileID: 8300000, guid: 76c46c652fb704a48817bfed85f6e882, type: 3}
+  gunCharge: {fileID: 8300000, guid: 37b0a9274c3b044d0a6f90232835f046, type: 3}
 --- !u!114 &114000010942461260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1116,6 +1270,9 @@ MonoBehaviour:
   BulletRelativeFinalSpawnScale: {x: 0.1, y: 0.1, z: 0.1}
   StartingBulletRotationSpeed: 30
   EndingBulletRotationSpeed: 700
+  GunSounds: {fileID: 82000014293988946}
+  gunFire: {fileID: 8300000, guid: cf0c7092fd02243d98fbec46c77a4fc8, type: 3}
+  gunCharge: {fileID: 8300000, guid: bb96626dffc504a0caba897f5484a7b3, type: 3}
 --- !u!114 &114000013338540584
 MonoBehaviour:
   m_ObjectHideFlags: 1

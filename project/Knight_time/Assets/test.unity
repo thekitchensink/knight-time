@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.695
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.088671796, g: 0.0933951, b: 0.08421326, a: 0.695}
+  m_IndirectSpecularColor: {r: 0.08867196, g: 0.093395166, b: 0.08421319, a: 0.695}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -97,11 +97,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000014164069924, guid: 6c9961b8aafa2f44292872b8080a5fb9,
-        type: 2}
-      propertyPath: Disable.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4000012537190186, guid: 6c9961b8aafa2f44292872b8080a5fb9, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.13124
@@ -134,11 +129,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014164069924, guid: 6c9961b8aafa2f44292872b8080a5fb9,
-        type: 2}
-      propertyPath: Disable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1651860575}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c9961b8aafa2f44292872b8080a5fb9, type: 2}
   m_IsPrefabParent: 0
@@ -402,11 +392,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0374e890105968498c6cbd4138f7aaa, type: 2}
   m_IsPrefabParent: 0
---- !u!65 &1651860575 stripped
-BoxCollider:
-  m_PrefabParentObject: {fileID: 65000012166710878, guid: 6c9961b8aafa2f44292872b8080a5fb9,
-    type: 2}
-  m_PrefabInternal: {fileID: 802380809}
 --- !u!1 &1842882900
 GameObject:
   m_ObjectHideFlags: 0
