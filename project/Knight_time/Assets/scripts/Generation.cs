@@ -38,9 +38,13 @@ class cell
 
 public class Generation : MonoBehaviour {
 
+    private bool hasntGoal = true;
+    private int randGoal;
+
     public int xDense = 4;
     public int yDense = 3;
 
+    public GameObject thegoal;
     public GameObject walls;
     public GameObject Pickup;
 
@@ -55,6 +59,7 @@ public class Generation : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        randGoal = Random.Range(((width - 1) / 2) * ((height - 1) / 2), (width - 1) * (height - 1));
         generateMap(width, height);
         buildMap(topLeftX, topLeftZ, hallSize, yheight, floor);
     }
@@ -201,6 +206,13 @@ public class Generation : MonoBehaviour {
                 theCeil.GetComponent<Transform>().localScale = new Vector3(hallSize, 0.001f, hallSize);
                 theCeil.GetComponent<Renderer>().material = newat;
                 theCeil.layer = LayerMask.NameToLayer("Player");
+
+                if((randGoal == (j) * this.Width + (i )) && hasntGoal )
+                {
+                    hasntGoal = false;
+                    GameObject goal = GameObject.Instantiate(thegoal);
+                    goal.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
+                }
 
                 if (dungeon[j, i].pickup)
                 {
