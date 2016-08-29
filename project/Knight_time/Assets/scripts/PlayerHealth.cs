@@ -13,8 +13,8 @@ public class PlayerHealth : MonoBehaviour {
 	private static Fisheye fe;
 
 	private static float originalAbberation = 5;
-	private static float originalFish;
-	private static float originalGrain;
+	private static float originalFish = 0.15f;
+	private static float originalGrain = 0.8f;
 
     public static PlayerHealth sing;
     public static int Health
