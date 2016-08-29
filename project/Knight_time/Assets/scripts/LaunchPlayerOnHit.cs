@@ -11,6 +11,10 @@ public class LaunchPlayerOnHit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         comp = BehaviourObject.GetComponent<BaseMaceAI>();
+        if(GameObjectTrigger == null)
+        {
+            GameObjectTrigger = GameObject.Find("FPSController");
+        }
    	}
 
     void OnTriggerEnter(Collider other)

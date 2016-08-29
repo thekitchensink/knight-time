@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+enum EnemyType
+{
+    None,
+    Sword,
+    Mace
+}
+
 class cell
 {
 	public bool left;
@@ -8,9 +15,15 @@ class cell
 	public bool top;
 	public bool bottom;
 
-  public int group;
+    public int group;
 
-  public bool pickup;
+    public bool pickup;
+
+    public EnemyType enemy = EnemyType.None;
+
+    public static int PickupChance;
+
+    public static int EnemySpawnChance;
 
   public cell()
   {
@@ -24,7 +37,7 @@ class cell
     bottom = B;
     group = G;
 
-    int aRand = Random.Range(0, 10);
+    int aRand = Random.Range(0, PickupChance);
     if(aRand == 1)
     {
       pickup = true;
@@ -32,6 +45,21 @@ class cell
     else
     {
       pickup = false;
+    }
+    if(!pickup)
+    {
+        int anotherand = Random.Range(0, EnemySpawnChance + (int)EnemyType.Mace + 1);
+
+            Debug.Log(anotherand);
+
+        if(anotherand > (int)EnemyType.Mace)
+        {
+            enemy = EnemyType.None;
+        }
+        else
+        {
+            enemy = (EnemyType)anotherand;
+        }
     }
   }
 }
@@ -44,6 +72,23 @@ public class Generation : MonoBehaviour {
 
     public int xDense = 4;
     public int yDense = 3;
+
+    private static int PowerUpChance
+    {
+        get { return cell.PickupChance; }
+        set { cell.PickupChance = PowerUpChance; }
+    }
+    private static int EnemySpawnChance
+    {
+        get { return cell.EnemySpawnChance; }
+        set { cell.EnemySpawnChance = EnemySpawnChance; }
+    }
+
+    public static int PickupChance;
+    public static int EnemyChance;
+
+    public GameObject SwordPrefab;
+    public GameObject MacePrefab;
 
     public GameObject thegoal;
     public GameObject walls;
@@ -60,6 +105,9 @@ public class Generation : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        cell.PickupChance = 10;
+        cell.EnemySpawnChance = 10;
+        randGoal = Random.Range(((width - 1) / 2) * ((height - 1) / 2), (width - 1) * (height - 1));
         GameObject.Find("FPSController").GetComponent<Transform>().position = new Vector3(topLeftX, floor + height/2.0f ,topLeftZ);
         randGoalx = Random.Range((int)(2.0f*(width - 1)/3.0f), width- 1);// = Random.Range((int)((2.0f * (float)(width) / 3.0f) * (2.0f * (float)(height) / 3.0f)), (width - 1) * (height - 1));
         randGoaly = Random.Range((int)(2.0f * (height - 1) / 3.0f), height - 1);
@@ -221,6 +269,29 @@ public class Generation : MonoBehaviour {
                 {
                     GameObject pick = GameObject.Instantiate(Pickup);
                     pick.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
+                }
+
+                {
+                    GameObject go = null;
+                    switch (dungeon[j, i].enemy)
+                    {
+                        case EnemyType.Mace:
+                            {
+                                go = Instantiate(MacePrefab) as GameObject;
+                                break;
+                            }
+                        case EnemyType.Sword:
+                            {
+                                go = Instantiate(SwordPrefab) as GameObject;
+                                break;
+                            }
+                        default:
+                            break;
+                    }
+                    if(go)
+                    {
+                        go.transform.position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
+                    }
                 }
             }
             topLeftZ -= hallSize;
