@@ -195,9 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Distance: 0.5
-  StartingDistance: 4
-  Player: {fileID: 0}
-  PlayerLaunchController: {fileID: 0}
+  StartingDistance: 2
   RotationPivot: {fileID: 1000011258965156}
   LaunchPower: 400
   LaunchHeight: 1

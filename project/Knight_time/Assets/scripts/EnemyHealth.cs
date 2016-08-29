@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using gen = System.Collections.Generic;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class EnemyHealth : MonoBehaviour
 
     private bool IsDying = false;
     private float TimeTracker = 0.0f;
+
+    public gen.List<Collider> Disable;
+
     // Use this for initialization
     void Start () {
         CurrentHealth = StartingHealth;
@@ -23,6 +27,10 @@ public class EnemyHealth : MonoBehaviour
         {
             if(2.0f < (TimeTracker += Time.deltaTime))
             {
+                foreach(Collider c in Disable)
+                {
+                    c.enabled = false;
+                }
                 Destroy(RootToDestroy);
             }
         }
