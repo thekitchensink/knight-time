@@ -50,7 +50,7 @@ class cell
     {
         int anotherand = Random.Range(0, EnemySpawnChance + (int)EnemyType.Mace + 1);
 
-            Debug.Log(anotherand);
+        Debug.Log(anotherand);
 
         if(anotherand > (int)EnemyType.Mace)
         {
@@ -58,7 +58,7 @@ class cell
         }
         else
         {
-            enemy = (EnemyType)anotherand;
+            enemy = anotherand == 0 ? EnemyType.Sword : (EnemyType)anotherand;
         }
     }
   }
@@ -76,12 +76,12 @@ public class Generation : MonoBehaviour {
     private static int PowerUpChance
     {
         get { return cell.PickupChance; }
-        set { cell.PickupChance = PowerUpChance; }
+        set { cell.PickupChance = value; }
     }
     private static int EnemySpawnChance
     {
         get { return cell.EnemySpawnChance; }
-        set { cell.EnemySpawnChance = EnemySpawnChance; }
+        set { cell.EnemySpawnChance = value; }
     }
 
     public static int PickupChance;
@@ -93,6 +93,8 @@ public class Generation : MonoBehaviour {
     public GameObject thegoal;
     public GameObject walls;
     public GameObject Pickup;
+    public GameObject PointLight;
+    public float PointLightOffset;
 
     public int width, height;
     public float topLeftX, topLeftZ, hallSize, yheight, floor;
@@ -214,6 +216,15 @@ public class Generation : MonoBehaviour {
                     left.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     left.GetComponent<Transform>().localScale = (new Vector3(hallSize * left.GetComponent<Transform>().localScale.x,
                         height * left.GetComponent<Transform>().localScale.y, hallSize * left.GetComponent<Transform>().localScale.z));
+
+
+                    if (Random.Range(0, 10) == 0)
+                    {
+                        GameObject go = Instantiate(PointLight, left.transform, false) as GameObject;
+                        Vector3 v = go.transform.localPosition;
+                        v.x -= PointLightOffset;
+                        go.transform.localPosition = v;
+                    }
                 }
 
                 if (dungeon[j, i].right)
@@ -222,6 +233,14 @@ public class Generation : MonoBehaviour {
                     right.GetComponent<Transform>().position = new Vector3(topLeftX + hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     right.GetComponent<Transform>().localScale = (new Vector3(hallSize * right.GetComponent<Transform>().localScale.x,
                          height * right.GetComponent<Transform>().localScale.y, hallSize * right.GetComponent<Transform>().localScale.z));
+
+                    if (Random.Range(0, 10) == 0)
+                    {
+                        GameObject go = Instantiate(PointLight, right.transform, false) as GameObject;
+                        Vector3 v = go.transform.localPosition;
+                        v.x += PointLightOffset;
+                        go.transform.localPosition = v;
+                    }
                 }
 
                 if (dungeon[j, i].bottom)
@@ -231,6 +250,14 @@ public class Generation : MonoBehaviour {
                     bottom.GetComponent<Transform>().Rotate(0.0f, 00.0f, 90.0f);
                     bottom.GetComponent<Transform>().localScale = (new Vector3(hallSize * bottom.GetComponent<Transform>().localScale.x,
                          height * bottom.GetComponent<Transform>().localScale.y, hallSize * bottom.GetComponent<Transform>().localScale.z));
+
+                    if (Random.Range(0, 10) == 0)
+                    {
+                        GameObject go = Instantiate(PointLight, bottom.transform, false) as GameObject;
+                        Vector3 v = go.transform.localPosition;
+                        v.z += PointLightOffset;
+                        go.transform.localPosition = v;
+                    }
                 }
 
                 if (dungeon[j, i].top)
@@ -240,6 +267,14 @@ public class Generation : MonoBehaviour {
                     top.GetComponent<Transform>().Rotate(0.0f, 0.0f, 90.0f);
                     top.GetComponent<Transform>().localScale = (new Vector3(hallSize * top.GetComponent<Transform>().localScale.x,
                         height * top.GetComponent<Transform>().localScale.y, hallSize * top.GetComponent<Transform>().localScale.z));
+
+                    if (Random.Range(0, 10) == 0)
+                    {
+                        GameObject go = Instantiate(PointLight, top.transform, false) as GameObject;
+                        Vector3 v = go.transform.localPosition;
+                        v.z -= PointLightOffset;
+                        go.transform.localPosition = v;
+                    }
                 }
 
                 topLeftX += hallSize;
@@ -270,6 +305,7 @@ public class Generation : MonoBehaviour {
                     pick.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize, floor + height * 0.25f, topLeftZ);
                 }
 
+                if(i > 2 && j > 2)
                 {
                     GameObject go = null;
                     switch (dungeon[j, i].enemy)

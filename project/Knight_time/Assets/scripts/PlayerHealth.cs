@@ -89,13 +89,14 @@ public class PlayerHealth : MonoBehaviour {
     public static void TakeDamage(int amount)
     {
 		//GameObject go = sing.gameObject.transform.FindChild("FirstPersonCharacter").gameObject;
-		vaca.chromaticAberration = 60f;
-		nag.intensityMultiplier = 60f;
-		fe.strengthX = 0.8f;
-		fe.strengthY = 0.8f;
+
 
         if(sing.TimeTracker > sing.InvulnFrameLength)
         {
+            vaca.chromaticAberration = 60f;
+            nag.intensityMultiplier = 60f;
+            fe.strengthX = 0.8f;
+            fe.strengthY = 0.8f;
             sing.TimeTracker = 0;
 
             sing.CurrentHealthAmount -= amount;
@@ -112,5 +113,8 @@ public class PlayerHealth : MonoBehaviour {
     public static void AddHealth(int amount)
     {
         sing.CurrentHealthAmount += amount;
+
+        if (sing.CurrentHealthAmount > sing.StartingHealthAmount)
+            sing.CurrentHealthAmount = sing.StartingHealthAmount;
     }
 }

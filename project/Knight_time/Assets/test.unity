@@ -384,6 +384,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &908231119
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010912560078, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1076755707
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +461,8 @@ MonoBehaviour:
   thegoal: {fileID: 1358275652}
   walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
   Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
+  PointLight: {fileID: 1000011082350058, guid: 1b8a099ade2a0234083ea3d22e163604, type: 2}
+  PointLightOffset: 0.4
   width: 32
   height: 32
   topLeftX: 0
