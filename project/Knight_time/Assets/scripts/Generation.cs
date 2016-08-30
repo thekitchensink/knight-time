@@ -108,7 +108,7 @@ public class Generation : MonoBehaviour {
     void Start()
     {
         cell.PickupChance = 10;
-        cell.EnemySpawnChance = 10;
+        cell.EnemySpawnChance = 5;
         GameObject.Find("FPSController").GetComponent<Transform>().position = new Vector3(topLeftX, floor + yheight/2.0f ,topLeftZ);
         randGoalx = Random.Range((int)(2.0f*(width - 1)/3.0f), width- 1);// = Random.Range((int)((2.0f * (float)(width) / 3.0f) * (2.0f * (float)(height) / 3.0f)), (width - 1) * (height - 1));
         randGoaly = Random.Range((int)(2.0f * (height - 1) / 3.0f), height - 1);
@@ -217,13 +217,16 @@ public class Generation : MonoBehaviour {
                     left.GetComponent<Transform>().localScale = (new Vector3(hallSize * left.GetComponent<Transform>().localScale.x,
                         height * left.GetComponent<Transform>().localScale.y, hallSize * left.GetComponent<Transform>().localScale.z));
 
-
                     if (Random.Range(0, 10) == 0)
                     {
                         GameObject go = Instantiate(PointLight, left.transform, false) as GameObject;
                         Vector3 v = go.transform.localPosition;
                         v.x -= PointLightOffset;
                         go.transform.localPosition = v;
+                    }
+                    if(i == 0)
+                    {
+                        left.GetComponent<DestroyWall>().enable = false;
                     }
                 }
 
@@ -241,6 +244,10 @@ public class Generation : MonoBehaviour {
                         v.x += PointLightOffset;
                         go.transform.localPosition = v;
                     }
+                    if (i == width - 1)
+                    {
+                        right.GetComponent<DestroyWall>().enable = false;
+                    }
                 }
 
                 if (dungeon[j, i].bottom)
@@ -251,12 +258,18 @@ public class Generation : MonoBehaviour {
                     bottom.GetComponent<Transform>().localScale = (new Vector3(hallSize * bottom.GetComponent<Transform>().localScale.x,
                          height * bottom.GetComponent<Transform>().localScale.y, hallSize * bottom.GetComponent<Transform>().localScale.z));
 
+
                     if (Random.Range(0, 10) == 0)
                     {
                         GameObject go = Instantiate(PointLight, bottom.transform, false) as GameObject;
                         Vector3 v = go.transform.localPosition;
                         v.z += PointLightOffset;
                         go.transform.localPosition = v;
+                    }
+                    if (j == 0)
+                    {
+                        bottom.GetComponent<DestroyWall>().enable = false;
+
                     }
                 }
 
@@ -274,6 +287,10 @@ public class Generation : MonoBehaviour {
                         Vector3 v = go.transform.localPosition;
                         v.z -= PointLightOffset;
                         go.transform.localPosition = v;
+                    }
+                    if (j == height - 1)
+                    {
+                        top.GetComponent<DestroyWall>().enable = false;
                     }
                 }
 
