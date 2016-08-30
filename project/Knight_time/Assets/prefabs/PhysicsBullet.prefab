@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e077cac497147546bd9a78c9496ec28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KillTime: 3
+  KillTime: 7
   TrackTime: 0
 --- !u!114 &114000012688903610
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 1000011849885852, guid: 782f3a417e517ef41a097df472082844, type: 2}
-  NumParticles: 10
+  NumParticles: 6
   StartingDistance: 1
   StartWith: {fileID: 1000012095381576}
   ZDistance: 0

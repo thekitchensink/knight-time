@@ -4,12 +4,13 @@ using System.Collections;
 public class DeathOnCollision : MonoBehaviour
 {
     public GameObject ParticleEffect;
+	private Transform t;
     private SpinningParticles sp;
     // Use this for initialization
     void Start()
     {
         sp = gameObject.transform.parent.gameObject.GetComponent<SpinningParticles>();
-
+		t = transform.FindChild ("GunParticles");
         if(sp == null)
         {
             throw new FuckYou();
@@ -30,6 +31,12 @@ public class DeathOnCollision : MonoBehaviour
         {
             eh.TakeDamage((int)sp.Damage);
         }
+
+		KillYourself k = t.gameObject.AddComponent<KillYourself> ();
+		k.KillTime = 4;
+		t.parent = null;
+		t.localScale = Vector3.one * 5;
+
         if(ParticleEffect != null)
             Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -56,6 +63,12 @@ public class DeathOnCollision : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+		KillYourself k = t.gameObject.AddComponent<KillYourself> ();
+		k.KillTime = 4;
+		t.parent = null;
+		t.localScale = Vector3.one * 5;
+
         if (ParticleEffect != null)
             Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.695
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08867196, g: 0.093395166, b: 0.08421319, a: 0.695}
+  m_IndirectSpecularColor: {r: 0.088671796, g: 0.0933951, b: 0.08421326, a: 0.695}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -203,9 +203,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xDense: 2
   yDense: 2
+  SwordPrefab: {fileID: 1000013055848340, guid: 6c9961b8aafa2f44292872b8080a5fb9,
+    type: 2}
+  MacePrefab: {fileID: 1000013608377116, guid: b0374e890105968498c6cbd4138f7aaa, type: 2}
   thegoal: {fileID: 1358275652}
   walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
   Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
+  PointLight: {fileID: 1000012424757758, guid: 05b573fc057011d46ac9687454a4d9f6, type: 2}
+  PointLightOffset: 0.5
   width: 8
   height: 8
   topLeftX: -16

@@ -15,6 +15,10 @@ public class PhysicsBulletL : Base_bullet {
     public float StartingBulletRotationSpeed;
     public float EndingBulletRotationSpeed;
 
+	public AudioSource a;
+	public AudioClip fire;
+	public AudioClip charge;
+
     private GameObject g;
     // Use this for initialization
     void Start () {
@@ -55,6 +59,10 @@ public class PhysicsBulletL : Base_bullet {
 			g.GetComponent<SpinningParticles>().RotationSpeed = StartingBulletRotationSpeed;
 		}
 
+
+		a.pitch = Random.Range (0.75f, 0.9f);
+		a.clip = charge;
+		a.Play ();
     }
     public override void Frame_Mouse_Is_Up()
     {
@@ -79,6 +87,10 @@ public class PhysicsBulletL : Base_bullet {
 	        //Reticle.GetComponent<Image>().canvasRenderer.SetColor(c);
 	 //       Debug.Log("Bitches ain't shit but hoes and tricks");
 	        g.transform.SetParent(null);
+
+			a.Stop ();
+			a.pitch = Random.Range (0.75f, 0.9f);
+			a.PlayOneShot (fire, 0.5f);
 		}
     }
 }

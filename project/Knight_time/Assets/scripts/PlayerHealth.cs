@@ -42,7 +42,6 @@ public class PlayerHealth : MonoBehaviour {
 		vaca = g.GetComponent < VignetteAndChromaticAberration > ();
 		nag = g.GetComponent<NoiseAndGrain>();
 		fe = g.GetComponent<Fisheye>();
-
     }
     
     // Update is called once per frame
@@ -93,6 +92,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public static void TakeDamage(int amount)
     {
+		AudioSource a = GameObject.Find ("MinimapCamera").GetComponent<AudioSource> ();
+		a.PlayOneShot (a.clip, 0.6f);
+
+		//sing.gameObject.GetComponent<AudioSource>().pitch = Random.Range (0.9f, 1.1f);
+		//sing.gameObject.GetComponent<AudioSource>().PlayOneShot(sing.gameObject.GetComponent<AudioSource>().clip, 0.6f);
+
 		//GameObject go = sing.gameObject.transform.FindChild("FirstPersonCharacter").gameObject;
 
 
