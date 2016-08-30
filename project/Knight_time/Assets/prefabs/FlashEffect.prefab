@@ -772,7 +772,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 13565922
+          rgba: 15807999
         key2:
           serializedVersion: 2
           rgba: 0
@@ -815,7 +815,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 65447
+          rgba: 16711889
         key2:
           serializedVersion: 2
           rgba: 255
