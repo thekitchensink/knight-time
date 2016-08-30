@@ -5,18 +5,15 @@ public class DeathOnCollision : MonoBehaviour
 {
     public GameObject ParticleEffect;
     private SpinningParticles sp;
-
-	private Transform particleT;
-
     // Use this for initialization
     void Start()
     {
         sp = gameObject.transform.parent.gameObject.GetComponent<SpinningParticles>();
 
-		if (sp == null)
-			Destroy (this);
-
-		particleT = transform.FindChild ("GunParticles");
+        if(sp == null)
+        {
+            throw new FuckYou();
+        }
     }
 
     // Update is called once per frame
@@ -26,20 +23,13 @@ public class DeathOnCollision : MonoBehaviour
     }
 
     public void OnCollisionEnter(Collision collision)
-	{
-		EnemyHealth eh;
-		// don't turn this into == I know what I am doing pls
-		if (eh = collision.collider.gameObject.GetComponent<EnemyHealth> ()) {
-			eh.TakeDamage ((int)sp.Damage);
-		}
-
-		if (particleT != null){
-			particleT.parent = null;
-			particleT.localScale = Vector3.one * 5;
-			KillYourself k = particleT.gameObject.AddComponent<KillYourself> ();
-			k.KillTime = 3f;
-		}
-
+    {
+        EnemyHealth eh;
+        // don't turn this into == I know what I am doing pls
+        if(eh = collision.collider.gameObject.GetComponent<EnemyHealth>())
+        {
+            eh.TakeDamage((int)sp.Damage);
+        }
         if(ParticleEffect != null)
             Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -52,15 +42,22 @@ public class DeathOnCollision : MonoBehaviour
         {
             eh.TakeDamage((int)sp.Damage);
         }
+        DestroyWall wall = other.gameObject.GetComponent<DestroyWall>();
+        if (wall)
+        {
+            if (wall.enable)
+                wall.health--;
 
-		if (particleT != null) {
-			particleT.parent = null;
-			particleT.localScale = Vector3.one * 5;
-			KillYourself k = particleT.gameObject.AddComponent<KillYourself> ();
-			k.KillTime = 3f;
-		}
-		if(ParticleEffect != null)
-        	Instantiate(ParticleEffect, transform.position, Quaternion.identity);
+            if (wall.health <= 0)
+            {
+                GameObject g = GameObject.Instantiate(Resources.Load("SmokeDust") as GameObject);
+                g.GetComponent<Transform>().position = other.gameObject.transform.position;
+
+                Destroy(other.gameObject);
+            }
+        }
+        if (ParticleEffect != null)
+            Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

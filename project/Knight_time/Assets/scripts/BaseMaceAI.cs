@@ -13,6 +13,7 @@ public class BaseMaceAI : MonoBehaviour
     public float LaunchHeight;
     public float MinTimeBetweenLaunches;
 
+    public int Damage;
 
     private GameObject Player;
     private GameObject PlayerLaunchController;
@@ -87,6 +88,8 @@ public class BaseMaceAI : MonoBehaviour
             rb.AddForce(position * LaunchPower);
 
             Launchable = false;
+
+            PlayerHealth.TakeDamage(Damage);
         }
     }
 

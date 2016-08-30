@@ -9,7 +9,6 @@ public class TeleBullet : Base_bullet
 
     private bool dicksOut = false;
     private GameObject lastBullet;
-	public AudioClip Charge;
 
     public override void OnMouseUp()
     {
@@ -18,10 +17,10 @@ public class TeleBullet : Base_bullet
             dicksOut = false;
 
             transform.position = lastBullet.transform.position;
-			lastBullet.GetComponent<AudioSource> ().PlayOneShot (Charge, 1);
+			GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] -= 1;
             Destroy(lastBullet);
         }
-        else
+		else if(GetComponent<inventory>().ammoCount[GetComponent<inventory>().current_type] > 0)
         {
             dicksOut = true;
             Transform t = GetComponent<Transform>();

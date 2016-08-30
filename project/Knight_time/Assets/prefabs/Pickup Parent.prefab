@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef7d78ce7219434a9cdae30c2838c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 50
   enable: 1
 --- !u!114 &114000014166970338
 MonoBehaviour:
@@ -164,3 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerGameObjectName: FPSController
   addition: {fileID: 0}
+  mats:
+  - {fileID: 2100000, guid: d27783d7febd0d842ac6422e1814f1d7, type: 2}
+  - {fileID: 2100000, guid: b687dc577626b8c4aa43dd06d6e3e37b, type: 2}
+  - {fileID: 2100000, guid: eba5022537917d748a8d987abe3759ca, type: 2}

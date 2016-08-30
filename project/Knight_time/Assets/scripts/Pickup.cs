@@ -8,16 +8,20 @@ public class Pickup : MonoBehaviour
     public string PlayerGameObjectName;
     private GameObject player;
     public Base_bullet addition;
-    
-
+    public stl.List<Material> mats;
     public void Start()
     {
         player = GameObject.Find(PlayerGameObjectName);
         Base_bullet[] a = player.GetComponents<Base_bullet>();
-        int i = (int)Random.Range(0, a.Length);
-        Debug.Log(i);
-        addition = a[(int)Random.Range(0, a.Length)];
-        
+        int i = Random.Range(0, a.Length + 1);
+        if(i == a.Length)
+        {
+            addition = null;
+        }
+        else
+            addition = a[i];
+
+        GetComponent<MeshRenderer>().material = mats[i];
     }
 
     void OnTriggerEnter(Collider collider)
@@ -28,9 +32,11 @@ public class Pickup : MonoBehaviour
             if (addition)
                 player.GetComponent<inventory>().PickupPowerup(addition);
             else
-                Debug.Log("kys");
+                PlayerHealth.AddHealth(30);
             Destroy(this.gameObject);
         }
+
+
     }
 
     // Update is called once per frame
