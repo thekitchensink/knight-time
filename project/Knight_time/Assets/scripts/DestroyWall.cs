@@ -4,7 +4,7 @@ using System.Collections;
 public class DestroyWall : MonoBehaviour
 {
 
-    public int health = 50;
+    public int health;
     public bool enable = true;
 
     // Use this for initialization
