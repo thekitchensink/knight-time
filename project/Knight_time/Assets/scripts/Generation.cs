@@ -58,7 +58,7 @@ class cell
         }
         else
         {
-            enemy = (EnemyType)anotherand;
+            enemy = anotherand == 0 ? EnemyType.Sword : (EnemyType)anotherand;
         }
     }
   }
@@ -106,7 +106,7 @@ public class Generation : MonoBehaviour {
     void Start()
     {
         cell.PickupChance = 10;
-        cell.EnemySpawnChance = 10;
+        cell.EnemySpawnChance = 5;
         GameObject.Find("FPSController").GetComponent<Transform>().position = new Vector3(topLeftX, floor + yheight/2.0f ,topLeftZ);
         randGoalx = Random.Range((int)(2.0f*(width - 1)/3.0f), width- 1);// = Random.Range((int)((2.0f * (float)(width) / 3.0f) * (2.0f * (float)(height) / 3.0f)), (width - 1) * (height - 1));
         randGoaly = Random.Range((int)(2.0f * (height - 1) / 3.0f), height - 1);
@@ -214,6 +214,11 @@ public class Generation : MonoBehaviour {
                     left.GetComponent<Transform>().position = new Vector3(topLeftX - hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     left.GetComponent<Transform>().localScale = (new Vector3(hallSize * left.GetComponent<Transform>().localScale.x,
                         height * left.GetComponent<Transform>().localScale.y, hallSize * left.GetComponent<Transform>().localScale.z));
+
+                    if(i == 0)
+                    {
+                        left.GetComponent<DestroyWall>().enable = false;
+                    }
                 }
 
                 if (dungeon[j, i].right)
@@ -222,6 +227,11 @@ public class Generation : MonoBehaviour {
                     right.GetComponent<Transform>().position = new Vector3(topLeftX + hallSize / 2, floor + height / 2.0f - 0.001f, topLeftZ);
                     right.GetComponent<Transform>().localScale = (new Vector3(hallSize * right.GetComponent<Transform>().localScale.x,
                          height * right.GetComponent<Transform>().localScale.y, hallSize * right.GetComponent<Transform>().localScale.z));
+
+                    if (i == width - 1)
+                    {
+                        right.GetComponent<DestroyWall>().enable = false;
+                    }
                 }
 
                 if (dungeon[j, i].bottom)
@@ -231,6 +241,11 @@ public class Generation : MonoBehaviour {
                     bottom.GetComponent<Transform>().Rotate(0.0f, 00.0f, 90.0f);
                     bottom.GetComponent<Transform>().localScale = (new Vector3(hallSize * bottom.GetComponent<Transform>().localScale.x,
                          height * bottom.GetComponent<Transform>().localScale.y, hallSize * bottom.GetComponent<Transform>().localScale.z));
+
+                    if (j == 0)
+                    {
+                        bottom.GetComponent<DestroyWall>().enable = false;
+                    }
                 }
 
                 if (dungeon[j, i].top)
@@ -240,6 +255,11 @@ public class Generation : MonoBehaviour {
                     top.GetComponent<Transform>().Rotate(0.0f, 0.0f, 90.0f);
                     top.GetComponent<Transform>().localScale = (new Vector3(hallSize * top.GetComponent<Transform>().localScale.x,
                         height * top.GetComponent<Transform>().localScale.y, hallSize * top.GetComponent<Transform>().localScale.z));
+
+                    if (j == height - 1)
+                    {
+                        top.GetComponent<DestroyWall>().enable = false;
+                    }
                 }
 
                 topLeftX += hallSize;

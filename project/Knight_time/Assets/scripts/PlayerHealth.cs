@@ -48,6 +48,11 @@ public class PlayerHealth : MonoBehaviour {
     void Update () {
         TimeTracker += Time.deltaTime;
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
 		if(vaca.chromaticAberration > originalAbberation)
 		{
 			vaca.chromaticAberration -= 0.8f;
