@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.695
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.088671796, g: 0.0933951, b: 0.08421326, a: 0.695}
+  m_IndirectSpecularColor: {r: 0.08867196, g: 0.093395166, b: 0.08421319, a: 0.695}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -419,8 +419,8 @@ MonoBehaviour:
   thegoal: {fileID: 1358275652}
   walls: {fileID: 1000011499349266, guid: 17af33bc5f337f14ca9e8ce7f4aa4596, type: 2}
   Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
-  width: 32
-  height: 32
+  width: 8
+  height: 8
   topLeftX: 0
   topLeftZ: 0
   hallSize: 4.6
@@ -547,8 +547,9 @@ GameObject:
   - 33: {fileID: 1358275655}
   - 65: {fileID: 1358275654}
   - 23: {fileID: 1358275653}
+  - 114: {fileID: 1358275657}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,6 +616,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1358275657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1358275652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37952ef9f07963a40b968ac2d2f55c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1488500297
 GameObject:
   m_ObjectHideFlags: 0
