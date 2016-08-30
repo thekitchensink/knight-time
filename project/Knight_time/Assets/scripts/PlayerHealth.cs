@@ -53,7 +53,12 @@ public class PlayerHealth : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-		if(vaca.chromaticAberration > originalAbberation)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if (vaca.chromaticAberration > originalAbberation)
 		{
 			vaca.chromaticAberration -= 0.8f;
 		}

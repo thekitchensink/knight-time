@@ -260,8 +260,8 @@ MonoBehaviour:
   Pickup: {fileID: 1000012470241352, guid: 5c40b34c91d3040449645e7a2ae4be7c, type: 2}
   PointLight: {fileID: 1000012424757758, guid: 05b573fc057011d46ac9687454a4d9f6, type: 2}
   PointLightOffset: 3
-  width: 16
-  height: 16
+  width: 32
+  height: 32
   topLeftX: 0
   topLeftZ: 0
   hallSize: 4.6
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37952ef9f07963a40b968ac2d2f55c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: level3
+  level: MainMenu
 --- !u!1 &1488500297
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using System.Collections;
 
 public class Goal : MonoBehaviour {
 
+    public string level; 
+
 	// Use this for initialization
 	void Start () {
 	
@@ -18,7 +20,7 @@ public class Goal : MonoBehaviour {
     {
         if(col.gameObject.name =="FPSController")
         {
-            SceneManager.LoadScene("level2");
+            SceneManager.LoadScene(level);
         }
     }
 }
